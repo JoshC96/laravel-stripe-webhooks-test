@@ -57,14 +57,7 @@ class StripeHooksService
      */
     public function paymentSuccess(array $data): bool
     {
-        $customerSubscription = CustomerSubscription::query()
-            ->whereHas(CustomerSubscription::RELATION_CUSTOMER, function (Builder $query) use ($data) {
-                return $query->where(Customer::TABLE . '.' . Customer::FIELD_STRIPE_ID, Arr::get($data, 'data.object.customer'));
-            })
-            ->whereHas(CustomerSubscription::RELATION_SUBSCRIPTION, function (Builder $query) use ($data) {
-                return $query->where(Subscription::TABLE . '.' . Subscription::FIELD_STRIPE_ID, Arr::get($data, 'data.object.id'));
-            })
-            ->first();
+        $customerSubscription = $this->customerSubscriptionRepository->findByStripePayload($data);
 
         if(!$customerSubscription) {
             $customerSubscription = $this->customerSubscriptionRepository->createFromStripeWebhook($data);

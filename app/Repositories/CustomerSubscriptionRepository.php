@@ -11,9 +11,30 @@ use Exception;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use InvalidArgumentException;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
+use RuntimeException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class CustomerSubscriptionRepository
 {
+
+    /**
+     * @param array $data 
+     * @return Model|Builder 
+     * @throws RuntimeException 
+     * @throws ModelNotFoundException 
+     */
+    public function findByStripePayload(array $data) {
+        return CustomerSubscription::query()
+            ->whereHas(CustomerSubscription::RELATION_CUSTOMER, function (Builder $query) use ($data) {
+                return $query->where(Customer::TABLE . '.' . Customer::FIELD_STRIPE_ID, Arr::get($data, 'data.object.customer'));
+            })
+            ->whereHas(CustomerSubscription::RELATION_SUBSCRIPTION, function (Builder $query) use ($data) {
+                return $query->where(Subscription::TABLE . '.' . Subscription::FIELD_STRIPE_ID, Arr::get($data, 'data.object.id'));
+            })
+            ->firstOrFail();
+    }
 
     /**
      * @param array $hookData 
