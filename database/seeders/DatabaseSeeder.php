@@ -22,11 +22,11 @@ class DatabaseSeeder extends Seeder
     {
         User::factory(10)->create();
 
-        Subscription::factory(5);
+        Subscription::factory(5)->create();
 
         Customer::factory(5)
             ->has(CustomerSubscription::factory()->count(5), Customer::RELATION_CUSTOMER_SUBSCRIPTIONS)
-            ->has(Invoice::factory()->count(5), Invoice::RELATION_CUSTOMER)
+            ->has(Invoice::factory()->count(5), Customer::RELATION_INVOICES)
             ->create();
 
     }
