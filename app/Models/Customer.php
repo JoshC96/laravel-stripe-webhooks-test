@@ -39,6 +39,11 @@ class Customer extends Model
     public const RELATION_INVOICES = 'invoices';
     public const RELATION_CUSTOMER_SUBSCRIPTIONS = 'customerSubscriptions';
 
+    protected $table = self::TABLE;
+    protected $guarded = [
+        self::FIELD_ID
+    ];
+
     /**
      * @return BelongsTo
      */
