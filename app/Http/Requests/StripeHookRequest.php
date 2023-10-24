@@ -5,6 +5,7 @@ namespace App\Http\Requests;
 use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
+use App\Enums\AllowedStripeHookTypes;
 
 class StripeHookRequest extends FormRequest
 {
@@ -33,7 +34,7 @@ class StripeHookRequest extends FormRequest
             self::REQUEST_ID => ['required', 'string'],
             self::REQUEST_OBJECT => ['required'],
             self::REQUEST_API_VERSION => ['required'],
-            self::REQUEST_TYPE => ['required', Rule::in(self::ALLOWED_TYPES)],
+            self::REQUEST_TYPE => ['required', Rule::in(array_column(AllowedStripeHookTypes::cases(), 'value'))],
             self::REQUEST_CREATED => ['required'],
         ];
     }
