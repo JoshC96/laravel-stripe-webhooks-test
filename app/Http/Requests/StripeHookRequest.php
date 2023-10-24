@@ -15,7 +15,7 @@ class StripeHookRequest extends FormRequest
     public const REQUEST_API_VERSION = 'api_version';
     public const REQUEST_TYPE = 'type';
     public const REQUEST_CREATED = 'created';
-    public const REQUEST_DATA= 'data';
+    public const REQUEST_DATA = 'data';
 
     public const ALLOWED_TYPES = [
         "invoice.paid",
@@ -36,6 +36,7 @@ class StripeHookRequest extends FormRequest
             self::REQUEST_API_VERSION => ['required'],
             self::REQUEST_TYPE => ['required', Rule::in(array_column(AllowedStripeHookTypes::cases(), 'value'))],
             self::REQUEST_CREATED => ['required'],
+            self::REQUEST_DATA => ['required'],
         ];
     }
 }
