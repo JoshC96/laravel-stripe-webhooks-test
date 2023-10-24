@@ -2,7 +2,7 @@
 
 namespace App\Enums;
 
-enum AllowedStripeHookTypes: int
+enum AllowedStripeHookTypes: string
 {
     case INVOICE_PAID = "invoice.paid";
     case PAYMENT_FAILED = "invoice.payment_failed";
