@@ -60,8 +60,10 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('customer_subscriptions', function (Blueprint $table) {
-            $table->dropForeign(['subscription_id', 'customer_id']);
-            $table->dropColumn(['subscription_id','customer_id']);
+            $table->dropForeign(['subscription_id']);
+            $table->dropForeign(['customer_id']);
+            $table->dropColumn(['subscription_id']);
+            $table->dropColumn(['customer_id']);
         });
 
         Schema::dropIfExists('customer_subscriptions');
