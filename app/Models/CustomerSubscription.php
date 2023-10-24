@@ -6,11 +6,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Enums\CustomerSubscriptionStatus;
 
 
 /**
  * @property int $id
- * @property int $status
+ * @property CustomerSubscriptionStatus|int $status
  * @property Carbon|null $paid_at
  * @property Carbon|null $expires_at
  * @property Carbon $updated_at

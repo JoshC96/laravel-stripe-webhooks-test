@@ -6,13 +6,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Enums\SubscriptionStatus;
+use App\Enums\SubscriptionFrequency;
 
 
 /**
  * @property int $id
  * @property string $name
- * @property int $status
- * @property int $frequency
+ * @property SubscriptionStatus|int $status
+ * @property SubscriptionFrequency|int $frequency
  * @property Carbon $updated_at
  * @property-read Carbon $created_at
  * @property-read Carbon|null $deleted_at

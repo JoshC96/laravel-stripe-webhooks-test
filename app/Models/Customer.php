@@ -6,13 +6,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Enums\CustomerStatus;
 
 /**
  * @property int $id
  * @property string $name
  * @property string $email
- * @property Carbon|null $email_verified_at
- * @property string $password
+ * @property string|null $phone
+ * @property CustomerStatus|int $status
  * @property Carbon $updated_at
  * @property-read Collection|User|null $user
  * @property-read Carbon $created_at
