@@ -42,7 +42,6 @@ return new class extends Migration
             $table->integer('status')->default(0);
             $table->timestamp('paid_at')->nullable();
             $table->timestamp('expires_at')->nullable();
-            $table->mediumText('stripe_id')->unique()->nullable();
 
             $table->unsignedBigInteger('subscription_id')->nullable();
             $table->foreign('subscription_id')->references('id')->on('subscriptions')->onDelete('set null');

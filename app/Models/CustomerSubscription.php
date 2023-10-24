@@ -31,7 +31,8 @@ class CustomerSubscription extends Model
     public const FIELD_STATUS = 'status';
     public const FIELD_PAID_AT = 'paid_at';
     public const FIELD_EXPIRES_AT = 'expires_at';
-    public const FIELD_STRIPE_ID = 'stripe_id';
+    public const FIELD_CUSTOMER_ID = 'customer_id';
+    public const FIELD_SUBSCRIPTION_ID = 'subscription_id';
 
     public const RELATION_SUBSCRIPTION = 'subscription';
     public const RELATION_CUSTOMER = 'customer';
