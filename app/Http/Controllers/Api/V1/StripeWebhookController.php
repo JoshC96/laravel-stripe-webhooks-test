@@ -32,7 +32,7 @@ class StripeWebhookController extends ApiController
             return $this->formatResponse([
                 'status' => false,
                 'message' => 'An error has occurred. ' . $exception->getMessage()
-            ], $exception->getCode());
+            ], 500);
         }
     }
 }
