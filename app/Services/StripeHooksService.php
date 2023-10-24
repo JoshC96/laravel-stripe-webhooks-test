@@ -42,7 +42,7 @@ class StripeHooksService
             case AllowedStripeHookTypes::PAYMENT_FAILED->value:
                 return $this->paymentFailed($data);
             case AllowedStripeHookTypes::SUBSCRIPTION_DELETED->value:
-                return $this->customerDeleted($data);
+                return $this->customerSubscriptionDeleted($data);
             default: 
                 return false;
         }
@@ -97,17 +97,17 @@ class StripeHooksService
 
 
     /**
-     * Update the customer's status to inactive. Could also be deleted as Customers use SoftDeletes
+     * Update the customer's subscription status to inactive.
      * 
      * @param array $data 
      * @return bool
      */
-    public function customerDeleted(array $data): bool
+    public function customerSubscriptionDeleted(array $data): bool
     {
-        $customer = $this->customerRepository->findByStripeId(Arr::get($data, 'data.object.id'));
+        $customerSubscription = $this->customerSubscriptionRepository->findByStripePayload($data);
 
-        $this->customerRepository->updateCustomer($customer, [
-            Customer::FIELD_STATUS => CustomerStatus::INACTIVE->value
+        $this->customerSubscriptionRepository->updateCustomerSubscription($customerSubscription, [
+            CustomerSubscription::FIELD_STATUS => CustomerSubscriptionStatus::INACTIVE->value
         ]);
 
         return true;
