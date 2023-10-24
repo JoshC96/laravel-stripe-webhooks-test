@@ -1,0 +1,50 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Enums\SubscriptionStatus;
+use App\Enums\SubscriptionFrequency;
+
+
+/**
+ * @property int $id
+ * @property string $name
+ * @property string|null $stripe_id
+ * @property SubscriptionStatus|int $status
+ * @property SubscriptionFrequency|int $frequency
+ * @property Carbon $updated_at
+ * @property-read Carbon $created_at
+ * @property-read Carbon|null $deleted_at
+ */
+class Subscription extends Model
+{
+    use HasFactory, SoftDeletes;
+
+    public const TABLE = 'subscriptions';
+
+    public const FIELD_ID = 'id';
+    public const FIELD_NAME = 'name';
+    public const FIELD_STATUS = 'status';
+    public const FIELD_FREQUENCY = 'frequency';
+    public const FIELD_STRIPE_ID = 'stripe_id';
+
+    public const RELATION_CUSTOMER_SUBSCRIPTIONS = 'customer_subscriptions';
+
+    protected $table = self::TABLE;
+    protected $guarded = [
+        self::FIELD_ID
+    ];
+
+    /**
+     * @return HasMany 
+     */
+    public function customerSubscriptions(): HasMany
+    {
+        return $this->hasMany(CustomerSubscription::class);
+    }
+
+}
