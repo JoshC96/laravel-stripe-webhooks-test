@@ -23,6 +23,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::prefix('v1')->group(function () {
 
     Route::prefix('stripe-hooks')->controller(StripeWebhookController::class)->group(function () {
+        Route::get('/', function() {
+            return response()->json(['message' => 'Only the POST method is allowed.']) ;
+        });
+
+
         Route::post('/', 'handleHookRequest');
     });
 });
