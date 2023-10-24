@@ -48,15 +48,15 @@ class InvoiceRepository
      * 
      * @param Invoice $invoice 
      * @param array $data 
-     * @return bool 
+     * @return Invoice 
      * @throws Exception 
      */
-    public function updateInvoice(Invoice $invoice, array $data): bool
+    public function updateInvoice(Invoice $invoice, array $data): Invoice
     {
         try {
             DB::beginTransaction();
             $invoice->fill($data);
-            return $invoice->save();
+            $invoice->save();
             DB::commit();
 
             return $invoice;
