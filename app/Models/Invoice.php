@@ -25,7 +25,7 @@ class Invoice extends Model
 {
     use HasFactory, SoftDeletes;
 
-    public const TABLE = 'customers';
+    public const TABLE = 'invoices';
 
     public const FIELD_ID = 'id';
     public const FIELD_STATUS = 'status';
