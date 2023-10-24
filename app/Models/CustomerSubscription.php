@@ -15,6 +15,7 @@ use App\Enums\CustomerSubscriptionStatus;
  * @property Carbon|null $paid_at
  * @property Carbon|null $expires_at
  * @property Carbon $updated_at
+ * @property string|null $stripe_id
  * @property-read Collection|Subscription|null $subscription
  * @property-read Collection|Customer|null $customer
  * @property-read Carbon $created_at
@@ -30,6 +31,7 @@ class CustomerSubscription extends Model
     public const FIELD_STATUS = 'status';
     public const FIELD_PAID_AT = 'paid_at';
     public const FIELD_EXPIRES_AT = 'expires_at';
+    public const FIELD_STRIPE_ID = 'stripe_id';
 
     public const RELATION_SUBSCRIPTION = 'subscription';
     public const RELATION_CUSTOMER = 'customer';

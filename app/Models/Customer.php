@@ -13,6 +13,7 @@ use App\Enums\CustomerStatus;
  * @property string $name
  * @property string $email
  * @property string|null $phone
+ * @property string|null $stripe_id
  * @property CustomerStatus|int $status
  * @property Carbon $updated_at
  * @property-read Collection|User|null $user
@@ -31,6 +32,7 @@ class Customer extends Model
     public const FIELD_PHONE = 'phone';
     public const FIELD_STATUS = 'status';
     public const FIELD_USER_ID = 'user_id';
+    public const FIELD_STRIPE_ID = 'stripe_id';
 
     public const RELATION_USER = 'user';
 

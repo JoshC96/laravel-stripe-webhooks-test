@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('phone')->unique()->nullable();
             $table->integer('status')->default(0);
+            $table->mediumText('stripe_id')->unique()->nullable();
 
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('SET NULL');
@@ -30,6 +31,7 @@ return new class extends Migration
             $table->string('name'); // plan
             $table->integer('status')->default(0);
             $table->integer('frequency')->default(0);
+            $table->mediumText('stripe_id')->unique()->nullable();
 
             $table->softDeletes();
             $table->timestamps();
@@ -40,6 +42,7 @@ return new class extends Migration
             $table->integer('status')->default(0);
             $table->timestamp('paid_at')->nullable();
             $table->timestamp('expires_at')->nullable();
+            $table->mediumText('stripe_id')->unique()->nullable();
 
             $table->unsignedBigInteger('subscription_id')->nullable();
             $table->foreign('subscription_id')->references('id')->on('subscriptions')->onDelete('set null');

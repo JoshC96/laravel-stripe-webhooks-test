@@ -13,6 +13,7 @@ use App\Enums\SubscriptionFrequency;
 /**
  * @property int $id
  * @property string $name
+ * @property string|null $stripe_id
  * @property SubscriptionStatus|int $status
  * @property SubscriptionFrequency|int $frequency
  * @property Carbon $updated_at
@@ -29,6 +30,7 @@ class Subscription extends Model
     public const FIELD_NAME = 'name';
     public const FIELD_STATUS = 'status';
     public const FIELD_FREQUENCY = 'frequency';
+    public const FIELD_STRIPE_ID = 'stripe_id';
 
     public const RELATION_CUSTOMER_SUBSCRIPTIONS = 'customer_subscriptions';
 
