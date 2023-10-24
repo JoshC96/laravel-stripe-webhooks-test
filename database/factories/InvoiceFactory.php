@@ -28,6 +28,7 @@ class InvoiceFactory extends Factory
             Invoice::FIELD_ISSUED_AT => Carbon::now(),
             Invoice::FIELD_PAID_AT => null,
             Invoice::FIELD_NOTE => fake()->paragraph(2),
+            Invoice::FIELD_STRIPE_ID => 'inv_' . fake()->uuid(),
         ];
     }
 }
