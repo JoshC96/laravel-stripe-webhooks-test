@@ -1,15 +1,23 @@
-# Laravel Code Challenge: Controller Implementation for Stripe Subscription Webhooks
+# Controller Implementation for Stripe Subscription Webhooks
 
 ## Objective:
 Develop a Laravel controller within a new Laravel project to handle Stripe webhooks pertaining to a multi-tiered subscription service, offering monthly, quarterly, and annual subscription plans.
 
-## Background:
-Imagine you're part of a team developing a Software as a Service (SaaS) platform. As a critical feature, the platform needs to offer a subscription-based payment system for its users. While a basic Laravel application is provided for reference, your task is to create a brand-new Laravel project that will be the foundation for this SaaS system's payment integration. This challenge focuses on the backend implementation, specifically on handling subscription-related webhook events from Stripe. Your goal is to ensure seamless payment experiences for users as they choose between different subscription durations.
+## Project Setup
+The project can be checked out locally and setup simply with `composer install` and `npm install`. Ensure a database connection is created in the .env file.
 
-## Project Setup:
+The skeleton project has been generated using Laravel Inertia and Breeze.  
+
+### Seeding
+The project can be kickstarted locally by seeding with `php artisan db:seed`. This is test data generated with Faker methods. 
+
+### Testing
+Ensure the application is working as expected by running `php artisan test`. Database seeding is not required for this to run. 
+
+
+# Project Requirements:
 ### Initialize a new Laravel project.
 Set up a database and configure the necessary environment settings.
-Stripe Integration:
 
 ### Integrate Stripe into your new project.
 Implement a StripeWebhookController to handle incoming Stripe events.
@@ -28,7 +36,3 @@ Handle potential exceptions or errors, ensuring that the system behaves graceful
 
 ### Testing:
 Use Laravel's testing tools to mock Stripe webhook events and test your StripeWebhookController for the events mentioned above.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
